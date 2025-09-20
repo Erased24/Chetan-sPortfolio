@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Video Editor Portfolio Design System - Dark theme with neon accents */
+
+@layer base {
+  :root {
+    /* Dark Base Colors */
+    --background: 222 84% 4%;
+    --foreground: 210 40% 98%;
+    
+    /* Card Colors */
+    --card: 220 27% 8%;
+    --card-foreground: 210 40% 98%;
+    
+    /* UI Elements */
+    --popover: 220 27% 8%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Neon Purple Primary */
+    --primary: 270 95% 70%;
+    --primary-foreground: 220 27% 8%;
+    --primary-glow: 270 95% 85%;
+    
+    /* Neon Blue Secondary */
+    --secondary: 200 100% 60%;
+    --secondary-foreground: 220 27% 8%;
+    --secondary-glow: 200 100% 80%;
+    
+    /* Muted Elements */
+    --muted: 220 27% 12%;
+    --muted-foreground: 215 20% 65%;
+    
+    /* Neon Accent */
+    --accent: 315 100% 75%;
+    --accent-foreground: 220 27% 8%;
+    --accent-glow: 315 100% 85%;
+    
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+    
+    /* Border & Input */
+    --border: 220 27% 18%;
+    --input: 220 27% 12%;
+    --ring: 270 95% 70%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 95% 70%), hsl(200 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(270 95% 70%) 0%, hsl(200 100% 60%) 50%, hsl(315 100% 75%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 27% 10%), hsl(220 27% 6%));
+    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(270 95% 70% / 0.3), transparent 70%);
+    
+    /* Shadows */
+    --shadow-neon: 0 0 20px hsl(270 95% 70% / 0.5);
+    --shadow-neon-blue: 0 0 20px hsl(200 100% 60% / 0.5);
+    --shadow-neon-pink: 0 0 20px hsl(315 100% 75% / 0.5);
+    --shadow-card: 0 8px 32px hsl(220 27% 4% / 0.8);
+    --shadow-elevated: 0 20px 60px hsl(220 27% 4% / 0.9);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --radius: 0.75rem;
+  }
+}
+
+/* Global Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background: radial-gradient(circle at 20% 80%, hsl(270 95% 70% / 0.1), transparent 50%),
+                radial-gradient(circle at 80% 20%, hsl(200 100% 60% / 0.1), transparent 50%),
+                radial-gradient(circle at 40% 40%, hsl(315 100% 75% / 0.05), transparent 50%),
+                hsl(var(--background));
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--secondary)));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(var(--primary-glow)), hsl(var(--secondary-glow)));
+  }
+}
+
+/* Animation Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 20px hsl(270 95% 70% / 0.5)); }
+  50% { filter: drop-shadow(0 0 40px hsl(270 95% 70% / 0.8)); }
+}
+
+@keyframes counter {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-30px) rotate(120deg); }
+  66% { transform: translateY(15px) rotate(240deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-glow {
+    filter: drop-shadow(0 0 10px hsl(270 95% 70% / 0.8));
+  }
+  
+  .card-glow {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card), inset 0 1px 0 hsl(var(--border));
+  }
+  
+  .neon-border {
+    border: 1px solid hsl(var(--primary));
+    box-shadow: var(--shadow-neon), inset 0 1px 0 hsl(var(--primary) / 0.2);
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-counter {
+    animation: counter 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.5s ease-out forwards;
+  }
+  
+  .animate-particles {
+    animation: particle-float 6s ease-in-out infinite;
+  }
+}
+

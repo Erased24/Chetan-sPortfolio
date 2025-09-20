@@ -11,22 +11,25 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Services', href: '#services' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Home", href: "#hero" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Services", href: "#services" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Contact", href: "#contact" },
   ];
 
+  // Scroll with offset for fixed header
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+    const element = document.querySelector(href) as HTMLElement | null;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 64; // h-16 = 64px
+      const elementPosition = element.offsetTop - headerOffset;
+      window.scrollTo({ top: elementPosition, behavior: "smooth" });
     }
     setIsOpen(false);
   };
@@ -34,7 +37,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300",
         isScrolled
           ? "bg-card/80 backdrop-blur-xl border-b border-border shadow-card"
           : "bg-transparent"
@@ -43,9 +46,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="text-2xl font-bold text-gradient">
-            Chetan Jagtap
-          </div>
+          <div className="text-2xl font-bold text-gradient">Chetan Jagtap</div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -59,7 +60,7 @@ const Header = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300" />
               </button>
             ))}
-            <Button variant="hero" onClick={() => scrollToSection('#contact')}>
+            <Button variant="hero" onClick={() => scrollToSection("#contact")}>
               Let's Work Together
             </Button>
           </nav>
@@ -90,10 +91,10 @@ const Header = () => {
                 {item.name}
               </button>
             ))}
-            <Button 
-              variant="hero" 
+            <Button
+              variant="hero"
               className="mt-4"
-              onClick={() => scrollToSection('#contact')}
+              onClick={() => scrollToSection("#contact")}
             >
               Let's Work Together
             </Button>
